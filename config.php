@@ -3,10 +3,10 @@
 // Edited by ThietkewebX.net
 
 // Cấu hình kết nối dữ liệu
-$hostname     = "localhost"; // Tên Host
-$username     = "root"; // Tên user đăng nhập
-$password     = ""; // Mật khẩu đăng nhập
-$databasename = "mysql"; // Tên cơ sở dữ liệu, nếu không cấu hình đúng, sẽ ra trang trắng.
+$hostname     = "mysql.hostinger.vn"; // Tên Host
+$username     = "u799516399_admin"; // Tên user đăng nhập
+$password     = "dieu1991"; // Mật khẩu đăng nhập
+$databasename = "u799516399_db"; // Tên cơ sở dữ liệu, nếu không cấu hình đúng, sẽ ra trang trắng.
 
 // Cấu hình hệ thống
 $visitorTimeout = 900; //=15 * 60
