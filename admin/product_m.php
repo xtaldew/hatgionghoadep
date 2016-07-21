@@ -1,14 +1,14 @@
-<!--script type="text/javascript" src="../jscripts/FCKeditor/fckeditor.js"></script>
+<script type="text/javascript" src="../jscripts/FCKeditor/fckeditor.js"></script>
     <script type="text/javascript">
       window.onload = function()
       {
-        var oFCKeditor = new FCKeditor( 'txtDetailShort' ) ;
+        var oFCKeditor = new FCKeditor( 'txtFullDetail' ) ;
         oFCKeditor.BasePath = "../jscripts/FCKeditor/" ;
 		oFCKeditor.Width = "720" ; 
 		oFCKeditor.Height = "300" ; 
         oFCKeditor.ReplaceTextarea() ;	
       }
-</script-->
+</script>
 
 <?php // Config
 $tableCategoryConfig = 'tbl_product_category';
@@ -62,95 +62,97 @@ function btnSave_onclick(){
 	if ($name=="") $errMsg .= "Hãy nhập tên danh mục !<br>";
 	//$errMsg .= checkUpload($_FILES["txtIcon"],".jpg;.gif;.bmp;.png",500*1024,0);
 	//$errMsg .= checkUpload($_FILES["txtImageLarge"],".jpg;.gif;.bmp;.png",500*1024,0);
-
+	$is_update = 1;
 	if ($errMsg==''){
 		if (!empty($_POST['id'])){
 			$oldid = $_POST['id'];
 			$sql = "update ".$tableConfig." set code='".$code."', name='".$name."', date_added=now(), catagory='".$catagory."', price='".$price."', amount='".$amount."', short_detail='".$short_detail."', full_detail='".$full_detail."' where id='".$oldid."'";
 		}else{
 			$sql = "insert into ".$tableConfig." (code, name, catagory, price, amount, short_detail, full_detail, date_added) values ('".$code."', '".$name."', '".$catagory."', '".$price."', '".$amount."', '".$short_detail."', '".$full_detail."', now())";
-
+			$is_update = 0;
 		}
 		if (mysql_query($sql,$conn)){
-			if(empty($_POST['id'])) $oldid = mysql_insert_id();
-			$r = getRecord($tableConfig,"id=".$oldid);
+			if($is_update == 0) {
+				if(empty($_POST['id'])) $oldid = mysql_insert_id();
+				$r = getRecord($tableConfig,"id=".$oldid);
 
-			$sqlUpdateField = "";
-			if ($_POST['chkClearImg']==''){
-				$extsmall=getFileExtention($_FILES['txtIcon']['name']);
-				if (makeUpload($_FILES['txtIcon'],"$path/".$actConfig."_sIcon".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sIcon".$oldid.$extsmall, 0777);
-					$sqlUpdateField = "icon='$pathdb/".$actConfig."_sIcon".$oldid.$extsmall."'";
-				} else{
-					$errMsg = "Không thể cập nhật anh !";
+				$sqlUpdateField = "";
+				if ($_POST['chkClearImg']==''){
+					$extsmall=getFileExtention($_FILES['txtIcon']['name']);
+					if (makeUpload($_FILES['txtIcon'],"$path/".$actConfig."_sIcon".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sIcon".$oldid.$extsmall, 0777);
+						$sqlUpdateField = "icon='$pathdb/".$actConfig."_sIcon".$oldid.$extsmall."'";
+					} else{
+						$errMsg = "Không thể cập nhật anh !";
+					}
+				}else{
+					if(file_exists('../'.$r['icon'])) @unlink('../'.$r['icon']);
+					$sqlUpdateField = " icon='' ";
 				}
-			}else{
-				if(file_exists('../'.$r['icon'])) @unlink('../'.$r['icon']);
-				$sqlUpdateField = " icon='' ";
-			}
-			if($sqlUpdateField!='')	{
-				$sqlUpdate = "update ".$tableConfig." set $sqlUpdateField where id='".$oldid."'";
-				mysql_query($sqlUpdate,$conn);
-			}
-			// image 1 upload
-			if ($_POST['chkClearImg1']==''){
-				$extsmall=getFileExtention($_FILES['txtImg1']['name']);
-				if (makeUpload($_FILES['txtImg1'],"$path/".$actConfig."_sImg1_".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sImg1_".$oldid.$extsmall, 0777);
-					$sqlUpdateField = " image1='$pathdb/".$actConfig."_sImg1_".$oldid.$extsmall."' ";
+				if($sqlUpdateField!='')	{
+					$sqlUpdate = "update ".$tableConfig." set $sqlUpdateField where id='".$oldid."'";
+					mysql_query($sqlUpdate,$conn);
 				}
-			}else{
-				if(file_exists('../'.$r['image1'])) @unlink('../'.$r['image1']);
-				$sqlUpdateField = " image1='' ";
-			}
-			// image 2 upload
-			if ($_POST['chkClearImg2']==''){
-				$extsmall=getFileExtention($_FILES['txtImg2']['name']);
-				if (makeUpload($_FILES['txtImg2'],"$path/".$actConfig."_sImg2_".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sImg2_".$oldid.$extsmall, 0777);
-					$sqlUpdateField = $sqlUpdateField.", image2='$pathdb/".$actConfig."_sImg2_".$oldid.$extsmall."' ";
+				// image 1 upload
+				if ($_POST['chkClearImg1']==''){
+					$extsmall=getFileExtention($_FILES['txtImg1']['name']);
+					if (makeUpload($_FILES['txtImg1'],"$path/".$actConfig."_sImg1_".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sImg1_".$oldid.$extsmall, 0777);
+						$sqlUpdateField = " image1='$pathdb/".$actConfig."_sImg1_".$oldid.$extsmall."' ";
+					}
+				}else{
+					if(file_exists('../'.$r['image1'])) @unlink('../'.$r['image1']);
+					$sqlUpdateField = " image1='' ";
 				}
-			}else{
-				if(file_exists('../'.$r['image2'])) @unlink('../'.$r['image2']);
-				$sqlUpdateField = $sqlUpdateField.", image2='' ";
-			}
-			// image 3 upload
-			if ($_POST['chkClearImg3']==''){
-				$extsmall=getFileExtention($_FILES['txtImg3']['name']);
-				if (makeUpload($_FILES['txtImg3'],"$path/".$actConfig."_sImg3_".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sImg3_".$oldid.$extsmall, 0777);
-					$sqlUpdateField = $sqlUpdateField.", image3='$pathdb/".$actConfig."_sImg3_".$oldid.$extsmall."' ";
+				// image 2 upload
+				if ($_POST['chkClearImg2']==''){
+					$extsmall=getFileExtention($_FILES['txtImg2']['name']);
+					if (makeUpload($_FILES['txtImg2'],"$path/".$actConfig."_sImg2_".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sImg2_".$oldid.$extsmall, 0777);
+						$sqlUpdateField = $sqlUpdateField.", image2='$pathdb/".$actConfig."_sImg2_".$oldid.$extsmall."' ";
+					}
+				}else{
+					if(file_exists('../'.$r['image2'])) @unlink('../'.$r['image2']);
+					$sqlUpdateField = $sqlUpdateField.", image2='' ";
 				}
-			}else{
-				if(file_exists('../'.$r['image3'])) @unlink('../'.$r['image3']);
-				$sqlUpdateField = $sqlUpdateField.", image3='' ";
-			}
-			// image 4 upload
-			if ($_POST['chkClearImg4']==''){
-				$extsmall=getFileExtention($_FILES['txtImg4']['name']);
-				if (makeUpload($_FILES['txtImg4'],"$path/".$actConfig."_sImg4_".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sImg4_".$oldid.$extsmall, 0777);
-					$sqlUpdateField = $sqlUpdateField.", image4='$pathdb/".$actConfig."_sImg4_".$oldid.$extsmall."' ";
+				// image 3 upload
+				if ($_POST['chkClearImg3']==''){
+					$extsmall=getFileExtention($_FILES['txtImg3']['name']);
+					if (makeUpload($_FILES['txtImg3'],"$path/".$actConfig."_sImg3_".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sImg3_".$oldid.$extsmall, 0777);
+						$sqlUpdateField = $sqlUpdateField.", image3='$pathdb/".$actConfig."_sImg3_".$oldid.$extsmall."' ";
+					}
+				}else{
+					if(file_exists('../'.$r['image3'])) @unlink('../'.$r['image3']);
+					$sqlUpdateField = $sqlUpdateField.", image3='' ";
 				}
-			}else{
-				if(file_exists('../'.$r['image4'])) @unlink('../'.$r['image4']);
-				$sqlUpdateField = $sqlUpdateField.", image4='' ";
-			}
-			// image 5 upload
-			if ($_POST['chkClearImg5']==''){
-				$extsmall=getFileExtention($_FILES['txtImg5']['name']);
-				if (makeUpload($_FILES['txtImg5'],"$path/".$actConfig."_sImg5_".$oldid.$extsmall)){
-					@chmod("$path/".$actConfig."_sImg5_".$oldid.$extsmall, 0777);
-					$sqlUpdateField = $sqlUpdateField.", image5='$pathdb/".$actConfig."_sImg5_".$oldid.$extsmall."' ";
+				// image 4 upload
+				if ($_POST['chkClearImg4']==''){
+					$extsmall=getFileExtention($_FILES['txtImg4']['name']);
+					if (makeUpload($_FILES['txtImg4'],"$path/".$actConfig."_sImg4_".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sImg4_".$oldid.$extsmall, 0777);
+						$sqlUpdateField = $sqlUpdateField.", image4='$pathdb/".$actConfig."_sImg4_".$oldid.$extsmall."' ";
+					}
+				}else{
+					if(file_exists('../'.$r['image4'])) @unlink('../'.$r['image4']);
+					$sqlUpdateField = $sqlUpdateField.", image4='' ";
 				}
-			}else{
-				if(file_exists('../'.$r['image5'])) @unlink('../'.$r['image5']);
-				$sqlUpdateField = $sqlUpdateField.", image5='' ";
-			}
-			// --------------------- UPDATE
-			if($sqlUpdateField!='')	{
-				$sqlUpdate = "update ".$tableConfig." set $sqlUpdateField where id='".$oldid."'";
-				mysql_query($sqlUpdate,$conn);
+				// image 5 upload
+				if ($_POST['chkClearImg5']==''){
+					$extsmall=getFileExtention($_FILES['txtImg5']['name']);
+					if (makeUpload($_FILES['txtImg5'],"$path/".$actConfig."_sImg5_".$oldid.$extsmall)){
+						@chmod("$path/".$actConfig."_sImg5_".$oldid.$extsmall, 0777);
+						$sqlUpdateField = $sqlUpdateField.", image5='$pathdb/".$actConfig."_sImg5_".$oldid.$extsmall."' ";
+					}
+				}else{
+					if(file_exists('../'.$r['image5'])) @unlink('../'.$r['image5']);
+					$sqlUpdateField = $sqlUpdateField.", image5='' ";
+				}
+				// --------------------- UPDATE
+				if($sqlUpdateField!='')	{
+					$sqlUpdate = "update ".$tableConfig." set $sqlUpdateField where id='".$oldid."'";
+					mysql_query($sqlUpdate,$conn);
+				}
 			}
 		}else{
 			$errMsg = "Không thể cập nhật !";
