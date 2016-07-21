@@ -6,6 +6,7 @@ function changeImg(src) {
     x.setAttribute("src", src);
 }
 </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 	<td width="60%">
