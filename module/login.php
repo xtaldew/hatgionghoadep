@@ -117,7 +117,7 @@ if($flagLogin){
 					  <tr>
                         <td align="left" valign="middle" id="bg_login"><input name="txtUid" type="text" class="inputbox1"
 							 onFocus="this.value='';"  value="<?php echo $_lang=='vn'?'Tên đăng nhập...':'Input name...'?>" /></td><td>&nbsp;</td> <td align="left" valign="middle" id="bg_login"><input name="txtPwd" type="password" class="inputbox1" 
-							onFocus="this.value='';" value="password" /></td> 
+							onFocus="this.value='';" value="password" /></td> <td>&nbsp;</td>
 <td height="26" align="left" valign="bottom">
 							<input class="buttonorange" onmouseover="this.className='bg_over'" style="WIDTH: 89px; HEIGHT: 27px; cursor:pointer" onmouseout="this.className='bg_out'" type="submit" value="<?php echo $l_btnLogin?>" name="btnLogin" onclick="return btnLogin_onclick()"/> 
 							</td>
@@ -127,4 +127,4 @@ if($flagLogin){
  					
 <?php }?>
 
-<?php if($errMsg!=''){echo '<div align="center">'.$errMsg.'<br>Ban chua la thanh vien? <a href="./?frame=registry">Dang ky</a></div>';} else if(!$flagLogin){echo '<div align="center">'.$errMsg.'<br>Ban chua la thanh vien? <a href="./?frame=registry">Dang ky ngay!</a></div>';}?>          
+<?php if($errMsg!=''){echo '<div align="center">'.$errMsg.'<br>Bạn chưa là thành viên? <a href="./?frame=registry">Đăng ký</a></div>';} else if(!$flagLogin){echo '<div align="center">'.$errMsg.'<br>Bạn chưa là thành viên? <a href="./?frame=registry">Đăng ký ngay!</a></div>';}?>          
