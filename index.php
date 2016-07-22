@@ -42,7 +42,7 @@ function btnSearch_onclick(){
   js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script-->
-<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td bgcolor="#FFFFFF"><img src="Hinh/space.jpg" width="5"></td>
   </tr>

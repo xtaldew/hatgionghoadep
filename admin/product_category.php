@@ -9,10 +9,10 @@
 			if ($result){
 				if(file_exists('../'.$r['image'])) @unlink('../'.$r['image']);
 				if(file_exists('../'.$r['image_large'])) @unlink('../'.$r['image_large']);
-				$errMsg = "Đã xóa thành công.";
-			}else $errMsg = "Không thể xóa dữ liệu !";
+				$errMsg = "ÄÃ£ xÃ³a thÃ nh cÃ´ng.";
+			}else $errMsg = "KhÃ´ng thá»ƒ xÃ³a dá»¯ liá»‡u !";
 		}else{
-			$errMsg = "Đang có danh mục sử dụng. Bạn không thể xóa !";	
+			$errMsg = "Äang cÃ³ danh má»¥c sá»­ dá»¥ng. Báº¡n khÃ´ng thá»ƒ xÃ³a !";	
 		}
 		break;
 }
@@ -36,11 +36,11 @@ if (isset($_POST['btnDel'])){
 				$cntParentExist++;
 			}
 		}
-		$errMsg = "Đã xóa ".$cntDel." phần tử.<br><br>";
-		$errMsg .= $cntNotDel>0 ? "Không thể xóa ".$cntNotDel." phần tử.<br>" : '';
-		$errMsg .= $cntParentExist>0 ? "Đang có danh mục con sử dụng ".$cntParentExist." phần tử." : '';
+		$errMsg = "ÄÃ£ xÃ³a ".$cntDel." pháº§n tá»­.<br><br>";
+		$errMsg .= $cntNotDel>0 ? "KhÃ´ng thá»ƒ xÃ³a ".$cntNotDel." pháº§n tá»­.<br>" : '';
+		$errMsg .= $cntParentExist>0 ? "Äang cÃ³ danh má»¥c con sá»­ dá»¥ng ".$cntParentExist." pháº§n tá»­." : '';
 	}else{
-		$errMsg = "Hãy chọn trước khi xóa !";
+		$errMsg = "HÃ£y chá»n trÆ°á»›c khi xÃ³a !";
 	}
 }
 
@@ -54,7 +54,7 @@ if ($_REQUEST['cat']!='') $where="parent=".$_REQUEST['cat']?>
 <input type="hidden" name="act" value="product_category">
 <?php $pageindex = createPage(countRecord("tbl_product_category",$where),"./?act=product_category&cat=".$_REQUEST['cat']."&page=",$MAXPAGE,$page)?>
 
-<?php if ($_REQUEST['code']==1) $errMsg = 'Cập nhật thành công.'?>
+<?php if ($_REQUEST['code']==1) $errMsg = 'Cáº­p nháº­t thÃ nh cÃ´ng.'?>
 
 <table cellspacing="0" cellpadding="0" width="100%">
 	
@@ -62,7 +62,7 @@ if ($_REQUEST['cat']!='') $where="parent=".$_REQUEST['cat']?>
 		<td class="smallfont">Trang : <?php echo $pageindex?></td>
 		<td height="30" align="right" class="smallfont">
 			<?php echo comboCategory('ddCat',getArrayCategory('tbl_product_category'),'smallfont',$_REQUEST['cat'],1)?>
-			<input type="button" value="Chuyển" class="button" onClick="window.location='./?act=product_category&cat='+ddCat.value">
+			<input type="button" value="Chuyá»ƒn" class="button" onClick="window.location='./?act=product_category&cat='+ddCat.value">
 		</td>
 	</tr>
 </table>
@@ -72,19 +72,19 @@ if ($_REQUEST['cat']!='') $where="parent=".$_REQUEST['cat']?>
 	  <th width="27" class="title"><input type="checkbox" name="chkall" onClick="chkallClick(this);"></th>
 		<th class="title" colspan="2" nowrap></th>
 		<th width="30" class="title"><a class="title" href="<?php echo getLinkSort(1)?>">ID</a></th>
-		<th width="199" class="title"><a class="title" href="<?php echo getLinkSort(3)?>">Tên danh mục</a></th>
-		<!--th width="132" class="title"><a class="title" href="<?php echo getLinkSort(4)?>">Thuộc danh mục</a></th-->		
-		<th width="67" class="title"><a class="title" href="<?php echo getLinkSort(10)?>">Thứ tự sắp xếp</a></th>
-		<!--th width="67" class="title"><a class="title" href="<?php echo getLinkSort(11)?>">Không hiển thị</a></th>
-		<th width="122" class="title"><a class="title" href="<?php echo getLinkSort(12)?>">Ngày tạo lập</a></th>
-		<th width="124" class="title"><a class="title" href="<?php echo getLinkSort(13)?>">Lần hiệu chỉnh trước</a></th>
-		<th width="55" class="title"><a class="title" href="<?php echo getLinkSort(14)?>">Ngôn ngữ</a></th-->
+		<th width="199" class="title"><a class="title" href="<?php echo getLinkSort(3)?>">TÃªn danh má»¥c</a></th>
+		<!--th width="132" class="title"><a class="title" href="<?php echo getLinkSort(4)?>">Thuá»™c danh má»¥c</a></th-->		
+		<th width="67" class="title"><a class="title" href="<?php echo getLinkSort(10)?>">Thá»© tá»± sáº¯p xáº¿p</a></th>
+		<!--th width="67" class="title"><a class="title" href="<?php echo getLinkSort(11)?>">KhÃ´ng hiá»ƒn thá»‹</a></th>
+		<th width="122" class="title"><a class="title" href="<?php echo getLinkSort(12)?>">NgÃ y táº¡o láº­p</a></th>
+		<th width="124" class="title"><a class="title" href="<?php echo getLinkSort(13)?>">Láº§n hiá»‡u chá»‰nh trÆ°á»›c</a></th>
+		<th width="55" class="title"><a class="title" href="<?php echo getLinkSort(14)?>">NgÃ´n ngá»¯</a></th-->
 	</tr>
   
-<?php $sortby="order by sort";
+<?php 
 //if ($_REQUEST['sortby']!='') $sortby="order by ".(int)$_REQUEST['sortby'];
 //$direction=($_REQUEST['direction']==''||$_REQUEST['direction']=='0'?"desc":"");
-$sql="select * from tbl_product_category where 1 $sortby limit ".($p*$MAXPAGE).",".$MAXPAGE;
+$sql="select * from tbl_product_category where 1 order by sort limit ".($p*$MAXPAGE).",".$MAXPAGE;
 //$sql="select *,DATE_FORMAT(date_added,'%d/%m/%Y %h:%i') as dateAdd,DATE_FORMAT(last_modified,'%d/%m/%Y %h:%i') as dateModify from tbl_product_category where id>4 and $where $sortby $direction limit ".($p*$MAXPAGE).",".$MAXPAGE;
 $result=mysql_query($sql,$conn);
 $i=0;
@@ -99,12 +99,12 @@ while($row=mysql_fetch_array($result)){
 		<input type="checkbox" name="chk[]" value="<?php echo $row['id']?>">
 		</td>
 		<td width="30" align="center" bgcolor="<?php echo $color?>" class="smallfont">
-			<a href="./?act=product_category_m&cat=<?php echo $_REQUEST['cat']?>&page=<?php echo $_REQUEST['page']?>&id=<?php echo $row['id']?>">Sửa</a>		</td>
+			<a href="./?act=product_category_m&cat=<?php echo $_REQUEST['cat']?>&page=<?php echo $_REQUEST['page']?>&id=<?php echo $row['id']?>">Sá»­a</a>		</td>
 		<td width="30" align="center" bgcolor="<?php echo $color?>" class="smallfont">
 			<a 
-				onClick="return confirm('Bạn có chắc chắn muốn xóa ?');" 
+				onClick="return confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a ?');" 
 				href="./?act=product_category&action=del&page=<?php echo $_REQUEST['page']?>&id=<?php echo $row['id']?>"
-			>Xóa</a>	  </td>
+			>XÃ³a</a>	  </td>
 		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['id']?></td>
 		<td bgcolor="<?php echo $color?>" class="smallfont"><?php echo $row['name']?></td>
 		<!--td bgcolor="<php echo $color?>" class="smallfont"><php echo $parent['name']?></td-->
@@ -117,11 +117,11 @@ while($row=mysql_fetch_array($result)){
 		<td bgcolor="<php echo $color?>" class="smallfont" align="center"><php echo $row['dateModify']?></td>
 		<td bgcolor="<php echo $color?>" class="smallfont" align="center"><php echo $row['lang']?></td-->
 	</tr>
-<?php }}
+<?php }
 ?>
 </table>
-<input type="submit" value="Xóa chọn" name="btnDel" onClick="return confirm('Bạn có chắc chắn muốn xóa ?');" class="button">
-<input type="button" value="Thêm mới" name="btnNew" onClick="window.location='./?act=product_category_m&page=<?php echo $_REQUEST['page']?>&cat=<?php echo $_REQUEST['cat']?>'" class="button">
+<input type="submit" value="XÃ³a chá»n" name="btnDel" onClick="return confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a ?');" class="button">
+<input type="button" value="ThÃªm má»›i" name="btnNew" onClick="window.location='./?act=product_category_m&page=<?php echo $_REQUEST['page']?>&cat=<?php echo $_REQUEST['cat']?>'" class="button">
 </form>
 <script language="JavaScript">
 function chkallClick(o) {
@@ -137,5 +137,5 @@ function chkallClick(o) {
 
 <table width="100%">
 	<tr><td height="10"></td></tr>
-	<tr><td class="smallfont"><?php echo 'Tổng số hàng : <b>'.countRecord('tbl_product_category','').'</b>'?></td></tr>
+	<tr><td class="smallfont"><?php echo 'Tá»•ng sá»‘ hÃ ng : <b>'.countRecord('tbl_product_category','').'</b>'?></td></tr>
 </table>

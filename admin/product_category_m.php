@@ -29,37 +29,39 @@ function btnSave_onclick(){
 <?php $path = "../images/product";
 $pathdb = "images/product";
 if (isset($_POST['btnSave'])){
-	$code          = isset($_POST['txtCode']) ? trim($_POST['txtCode']) : '';
+//	$code          = isset($_POST['txtCode']) ? trim($_POST['txtCode']) : '';
 	$name          = isset($_POST['txtName']) ? trim($_POST['txtName']) : '';
-	$parent        = $_POST['ddCat'];
-	$subject       = isset($_POST['txtSubject']) ? trim($_POST['txtSubject']) : '';
-	$detail_short  = isset($_POST['txtDetailShort']) ? trim($_POST['txtDetailShort']) : '';
-	$detail        = isset($_POST['txtDetail']) ? trim($_POST['txtDetail']) : '';
+//	$parent        = $_POST['ddCat'];
+//	$subject       = isset($_POST['txtSubject']) ? trim($_POST['txtSubject']) : '';
+//	$detail_short  = isset($_POST['txtDetailShort']) ? trim($_POST['txtDetailShort']) : '';
+//	$detail        = isset($_POST['txtDetail']) ? trim($_POST['txtDetail']) : '';
 	$sort          = isset($_POST['txtSort']) ? trim($_POST['txtSort']) : 0;
-	$status        = $_POST['chkStatus']!='' ? 1 : 0;
+//	$status        = $_POST['chkStatus']!='' ? 1 : 0;
 	
-	$catInfo       = getRecord('tbl_product_category', 'id='.$parent);
-	if(!$multiLanguage){
-		$lang      = $catInfo['lang'];
-	}else{
-		$lang      = $catInfo['lang'] != '' ? $catInfo['lang'] : $_POST['cmbLang'];
-	}
+//	$catInfo       = getRecord('tbl_product_category', 'id='.$parent);
+//	if(!$multiLanguage){
+//		$lang      = $catInfo['lang'];
+//	}else{
+//		$lang      = $catInfo['lang'] != '' ? $catInfo['lang'] : $_POST['cmbLang'];
+//	}
 
 	if ($name=="") $errMsg .= "Hãy nhập tên danh mục !<br>";
-	$errMsg .= checkUpload($_FILES["txtImage"],".jpg;.gif;.bmp",500*1024,0);
-	$errMsg .= checkUpload($_FILES["txtImageLarge"],".jpg;.gif;.bmp",500*1024,0);
+//	$errMsg .= checkUpload($_FILES["txtImage"],".jpg;.gif;.bmp",500*1024,0);
+//	$errMsg .= checkUpload($_FILES["txtImageLarge"],".jpg;.gif;.bmp",500*1024,0);
 
 	if ($errMsg==''){
 		if (!empty($_POST['id'])){
 			$oldid = $_POST['id'];
-			$sql = "update tbl_product_category set code='".$code."',name='".$name."', parent='".$parent."',subject='".$subject."',detail_short='".$detail_short."',detail='".$detail."', sort='".$sort."', status='".$status."',last_modified=now(), lang='".$lang."' where id='".$oldid."'";
+//			$sql = "update tbl_product_category set code='".$code."',name='".$name."', parent='".$parent."',subject='".$subject."',detail_short='".$detail_short."',detail='".$detail."', sort='".$sort."', status='".$status."',last_modified=now(), lang='".$lang."' where id='".$oldid."'";
+			$sql = "update tbl_product_category set name='".$name."', sort='".$sort."' where id='".$oldid."'";
 		}else{
-			$sql = "insert into tbl_product_category (code, name, parent, subject, detail_short, detail, sort, status,  date_added, last_modified, lang) values ('".$code."','".$name."','".$parent."','".$subject."','".$detail_short."','".$detail."','".$sort."','".$status."',now(),now(),'".$lang."')";
+//			$sql = "insert into tbl_product_category (code, name, parent, subject, detail_short, detail, sort, status,  date_added, last_modified, lang) values ('".$code."','".$name."','".$parent."','".$subject."','".$detail_short."','".$detail."','".$sort."','".$status."',now(),now(),'".$lang."')";
+			$sql = "insert into tbl_product_category (name, sort) values ('".$name."','".$sort."')";
 		}
 		if (mysql_query($sql,$conn)){
 			if(empty($_POST['id'])) $oldid = mysql_insert_id();
 			$r = getRecord("tbl_product_category","id=".$oldid);
-			
+		/*	
 			$sqlUpdateField = "";
 			
 			if ($_POST['chkClearImg']==''){
@@ -85,7 +87,7 @@ if (isset($_POST['btnSave'])){
 				if($sqlUpdateField != "") $sqlUpdateField .= ",";
 				$sqlUpdateField .= " image_large='' ";
 			}
-			
+			*/
 			if($sqlUpdateField!='')	{
 				$sqlUpdate = "update tbl_product_category set $sqlUpdateField where id='".$oldid."'";
 				mysql_query($sqlUpdate,$conn);
@@ -104,18 +106,18 @@ if (isset($_POST['btnSave'])){
 		$sql = "select * from tbl_product_category where id='".$oldid."'";
 		if ($result = mysql_query($sql,$conn)) {
 			$row=mysql_fetch_array($result);
-			$code          = $row['code'];
+		//	$code          = $row['code'];
 			$name          = $row['name'];
-			$parent        = $row['parent'];
-			$subject       = $row['subject'];
-			$detail_short  = $row['detail_short'];
-			$detail        = $row['detail'];
-			$image         = $row['image'];
-			$image_large   = $row['image_large'];
+	//		$parent        = $row['parent'];
+	//		$subject       = $row['subject'];
+	//		$detail_short  = $row['detail_short'];
+	//		$detail        = $row['detail'];
+	//		$image         = $row['image'];
+	//		$image_large   = $row['image_large'];
 			$sort          = $row['sort'];
-			$status        = $row['status'];
-			$date_added    = $row['date_added'];
-			$last_modified = $row['last_modified'];
+	//		$status        = $row['status'];
+	//		$date_added    = $row['date_added'];
+	//		$last_modified = $row['last_modified'];
 		}
 	}
 }

@@ -1,10 +1,10 @@
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
 <table width="100%"  border="0" cellspacing="0" cellpadding="0">	
   <tr><td style="background-color:#4F7274;border-bottom:1px #ccc solid;height:40px;">
-	<img src="" width="5" height="9" /><font size="5pt" color="#FF55FF"><b>Tat ca danh muc</b></font>
+	<img src="" width="5" height="9" /><font size="5pt" color="#FF55FF"><b>Tất cả danh mục</b></font>
   </td></tr>
 <?php 
-$sqlp = "select * from tbl_product_category where 1";
+$sqlp = "select * from tbl_product_category where 1 order by sort";
 $resultp = mysql_query($sqlp,$conn);
 while($rowp = mysql_fetch_assoc($resultp)) { ?>		
 	<tr>
