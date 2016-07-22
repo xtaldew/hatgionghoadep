@@ -73,25 +73,25 @@ if ($_REQUEST['cat']!='') $where="parent=".$_REQUEST['cat']?>
 		<th class="title" colspan="2" nowrap></th>
 		<th width="30" class="title"><a class="title" href="<?php echo getLinkSort(1)?>">ID</a></th>
 		<th width="199" class="title"><a class="title" href="<?php echo getLinkSort(3)?>">Tên danh mục</a></th>
-		<th width="132" class="title"><a class="title" href="<?php echo getLinkSort(4)?>">Thuộc danh mục</a></th>		
+		<!--th width="132" class="title"><a class="title" href="<?php echo getLinkSort(4)?>">Thuộc danh mục</a></th-->		
 		<th width="67" class="title"><a class="title" href="<?php echo getLinkSort(10)?>">Thứ tự sắp xếp</a></th>
-		<th width="67" class="title"><a class="title" href="<?php echo getLinkSort(11)?>">Không hiển thị</a></th>
+		<!--th width="67" class="title"><a class="title" href="<?php echo getLinkSort(11)?>">Không hiển thị</a></th>
 		<th width="122" class="title"><a class="title" href="<?php echo getLinkSort(12)?>">Ngày tạo lập</a></th>
 		<th width="124" class="title"><a class="title" href="<?php echo getLinkSort(13)?>">Lần hiệu chỉnh trước</a></th>
-		<th width="55" class="title"><a class="title" href="<?php echo getLinkSort(14)?>">Ngôn ngữ</a></th>
+		<th width="55" class="title"><a class="title" href="<?php echo getLinkSort(14)?>">Ngôn ngữ</a></th-->
 	</tr>
   
-<?php $sortby="order by date_added";
-if ($_REQUEST['sortby']!='') $sortby="order by ".(int)$_REQUEST['sortby'];
-$direction=($_REQUEST['direction']==''||$_REQUEST['direction']=='0'?"desc":"");
-
-$sql="select *,DATE_FORMAT(date_added,'%d/%m/%Y %h:%i') as dateAdd,DATE_FORMAT(last_modified,'%d/%m/%Y %h:%i') as dateModify from tbl_product_category where id>4 and $where $sortby $direction limit ".($p*$MAXPAGE).",".$MAXPAGE;
+<?php $sortby="order by sort";
+//if ($_REQUEST['sortby']!='') $sortby="order by ".(int)$_REQUEST['sortby'];
+//$direction=($_REQUEST['direction']==''||$_REQUEST['direction']=='0'?"desc":"");
+$sql="select * from tbl_product_category where 1 $sortby limit ".($p*$MAXPAGE).",".$MAXPAGE;
+//$sql="select *,DATE_FORMAT(date_added,'%d/%m/%Y %h:%i') as dateAdd,DATE_FORMAT(last_modified,'%d/%m/%Y %h:%i') as dateModify from tbl_product_category where id>4 and $where $sortby $direction limit ".($p*$MAXPAGE).",".$MAXPAGE;
 $result=mysql_query($sql,$conn);
 $i=0;
 while($row=mysql_fetch_array($result)){
-	if($row['id']!=2 && $row['id']!=77)
-	{
-		$parent = getRecord('tbl_product_category','id = '.$row['parent']);
+//	if($row['id']!=2 && $row['id']!=77)
+//	{
+//		$parent = getRecord('tbl_product_category','id = '.$row['parent']);
 		$color = $i++%2 ? "#d5d5d5" : "#e5e5e5"?>
 
 	<tr>
@@ -107,15 +107,15 @@ while($row=mysql_fetch_array($result)){
 			>Xóa</a>	  </td>
 		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['id']?></td>
 		<td bgcolor="<?php echo $color?>" class="smallfont"><?php echo $row['name']?></td>
-		<td bgcolor="<?php echo $color?>" class="smallfont"><?php echo $parent['name']?></td>
+		<!--td bgcolor="<php echo $color?>" class="smallfont"><php echo $parent['name']?></td-->
 
 		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['sort']?></td>
-		<td bgcolor="<?php echo $color?>" class="smallfont" align="center">
-			<input type="checkbox" disabled <?php echo $row['status']>0?'checked':''?>>
+		<!--td bgcolor="<php echo $color?>" class="smallfont" align="center">
+			<input type="checkbox" disabled <php echo $row['status']>0?'checked':''?>>
 		</td>
-		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['dateAdd']?></td>
-		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['dateModify']?></td>
-		<td bgcolor="<?php echo $color?>" class="smallfont" align="center"><?php echo $row['lang']?></td>
+		<td bgcolor="<php echo $color?>" class="smallfont" align="center"><php echo $row['dateAdd']?></td>
+		<td bgcolor="<php echo $color?>" class="smallfont" align="center"><php echo $row['dateModify']?></td>
+		<td bgcolor="<php echo $color?>" class="smallfont" align="center"><php echo $row['lang']?></td-->
 	</tr>
 <?php }}
 ?>
@@ -137,5 +137,5 @@ function chkallClick(o) {
 
 <table width="100%">
 	<tr><td height="10"></td></tr>
-	<tr><td class="smallfont"><?php echo 'Tổng số hàng : <b>'.countRecord('tbl_product_category','id>4').'</b>'?></td></tr>
+	<tr><td class="smallfont"><?php echo 'Tổng số hàng : <b>'.countRecord('tbl_product_category','').'</b>'?></td></tr>
 </table>
