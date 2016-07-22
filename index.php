@@ -34,15 +34,15 @@ function btnSearch_onclick(){
 </head>
 
 <body>
-<div id="fb-root"></div>
+<!--div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
+}(document, 'script', 'facebook-jssdk'));</script-->
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td bgcolor="#FFFFFF"><img src="Hinh/space.jpg" width="5"></td>
   </tr>
@@ -80,20 +80,20 @@ function btnSearch_onclick(){
       </table>
 	</td>
   </tr>
-  <tr><td width="100%" align="center" style="padding-top:20px"><font size=4 color="#3399ff">
+  <!--tr><td width="100%" align="center" style="padding-top:20px"><font size=4 color="#3399ff">
      <marquee height="30" behavior="scroll" direction="left" scrolldelay="100" scrollamount="7" onMouseOver="this.stop();" onMouseOut="this.start();">
          TRANG WEB NAY DANG TRONG QUA TRINH HOAN THIEN. XIN THONG CAM !
-     </marquee></font></td></tr>
+     </marquee></font></td></tr-->
   <tr><td height="10"></td></tr>
-  <tr><td width="100%"><table width="100%"><tr><td width="80%" align="left">
+  <tr><!--td width="100%"><table width="100%"><tr><td width="80%" align="left">
   	<div valign="center" class="fb-share-button" data-href="http://hocdientu.tk/" data-layout="button">Chia se tren Facebook</div>
      	<div style="padding-left:20px" class="g-plusone" data-size="medium" data-annotation="none" valign="center"> Chia se trong G+</div>
-  </td>
-  <td width="20%" align="center">
+  </td-->
+  <td width="100%" align="center">
      <!--a href="./?frame=login" style="text-decoration: none; font-size:14pt">Login <font size=2>or</font> Register</a-->
      <?php include('module/login.php') ?>
   </td>
-  </tr></table></td></tr>
+  <!--/tr></table></td></tr-->
   </tr>   
   <tr><td height="0"></td></tr>
   <!-- row 5 -->
@@ -288,7 +288,7 @@ var admvecvd = Math.floor((Math.random() * 1000000000000));
 <tr><td width="100%" align="center" style="padding-top:20px; padding-bottom:40px"><table align="center"><tr><td><a href="https://www.youtube.com/channel/UCNlAA2SyalW68dVMW3YvEtQ">
 	  <img height="50" src="http://www.k9workingdogs.nl/Images/youtubelogo.jpg" />
 	  </a></td>
-	  <td style="padding-left:250px"><a href="https://www.facebook.com/dieu.buivan.5">
+	  <td style="padding-left:250px"><a href="https://www.facebook.com/C%C3%A2y-B%E1%BA%A1c-H%C3%A0-582422828531735/?fref=ts">
 	  <img height="50" src="http://bullcitycrossfit.com/wp-content/uploads/2014/04/Like-Us-On-Facebook.jpeg" />
 	  </a></td>
 	  <td style="padding-left:250px"><a href="https://www.youtube.com/channel/UCNlAA2SyalW68dVMW3YvEtQ">
@@ -297,12 +297,14 @@ var admvecvd = Math.floor((Math.random() * 1000000000000));
 	  </tr></table></td></tr>
   <tr>
     <td bgcolor="#66cdaa" align="center"><br>
-	  <strong>Shop h&#7841;t gi&#7889;ng hoa &#273;&#7865;p</strong><br>
-            &#272;&#7883;a ch&#7881;: Thôn H&#7879;, Th&#7909;y Ninh, Tha&#769;i Th&#7909;y, Tha&#769;i Bi&#768;nh<br>
+	  <strong>Copyright@ XanhShop 2016</strong><br>
+            &#272;&#7883;a ch&#7881;: Cầu Giấy, Hà Nội<br>
             &#272;i&#7879;n tho&#7841;i: +84 1674 623 889<br><br>
 	</td>
   </tr>
 </table>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57112802e2cf383c"></script>
 </body>
 </html>
 <?php require("common_end.php"); ?>		
