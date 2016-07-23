@@ -9,6 +9,7 @@ require("common_start.php");
 require("lib/func.lib.php");
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <!-- Place this tag in your head or just before your close body tag. -->
@@ -50,7 +51,7 @@ function btnSearch_onclick(){
   <!-- row 2 -->
   <tr>
     <td align="center" width="100%" bgcolor="#FFFFFF">
-      <a href="http://hatgionghoadep.tk" target="_blank" rel="nofollow" style="border:none;">
+      <a href="http://hatgionghoadep.tk" target="_blank" style="border:none;">
       <img align="center" style="border:none;" src="banner.jpg"/></a>
     </td>
   </tr>
@@ -306,6 +307,18 @@ var admvecvd = Math.floor((Math.random() * 1000000000000));
 </table>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57112802e2cf383c"></script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66893125-8', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 </body>
 </html>
 <?php require("common_end.php"); ?>		
