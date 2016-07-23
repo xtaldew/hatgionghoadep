@@ -14,8 +14,9 @@ require("lib/func.lib.php");
 <!-- Place this tag in your head or just before your close body tag. -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="chuyên cung cấp các loại cây hoa văn phòng, terrarium, cầu thủy tinh, chậu trồng hoa">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Shop H&#7841;t Gi&#7889;ng Hoa &#272;&#7865;p</title>
+<title>Xanh Shop - Tiểu cảnh, cây hoa văn phòng, cầu thủy tinh</title>
 <script language="javascript" src="lib/varAlert.<?php echo $_lang?>.unicode.js"></script>
 <script language="javascript" src="lib/javascript.lib.js"></script>
 <script language="javascript">
